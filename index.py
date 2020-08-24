@@ -13,13 +13,21 @@ db_password = DB_CONNECT_LOCAL['db_password']
 db_host = DB_CONNECT_LOCAL['db_host']
 db_port = DB_CONNECT_LOCAL['db_port']
 
+
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.render('index.html', title='Блог любителей собакенов')
 
+    def post(self):
+        name = self.get_body_argument('name')
+        mail = self.get_body_argument('mail')
+        print(name, mail)
+
+
 class FactsHandler(tornado.web.RequestHandler):
     def get(self):
         self.render('facts.html', title='10 фактов о бордер колли!')
+
 
 def main():
     settings = {

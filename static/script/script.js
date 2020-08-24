@@ -79,12 +79,15 @@ subscribeBtn.addEventListener('click', () => {
 //окно для рассылки новостей
 submitBtn.addEventListener('click', (event) => {
     event.preventDefault();
+    let trimName = nameInp.value.trim(),
+        trimMail = mailInp.value.trim();
 
-
-    if (nameInp.value.trim() == '' && mailInp.value.trim() == '' && nameInp.value.trim() != null && mailInp.value.trim() != null) {
+    //вадилация мейла?
+    if (trimName == '' && trimMail == '' && trimName != null && trimMail != null
+    && trimName.length < 32 && trimMail.length < 32) {
         let error = document.createElement('p');
         error.className = 'error';
-        error.innerHTML = '<span>Ошибка!</span> Нужно заполнить все поля.';
+        error.innerHTML = '<span>Ошибка!</span> Нужно заполнить все поля правильно.';
         form.append(error);
         nameInp.value = '';
         mailInp.value = '';
