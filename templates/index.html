@@ -1,0 +1,78 @@
+{% extends base.html %}
+
+{% block index %}
+
+{% block head_index %}
+    <link rel="stylesheet" href="{{ static_url('css/slider.css') }}">
+{% end %}
+
+<h1>Добро пожаловать всем любителям бордер-колли!</h1>
+<!--слайдер-->
+<div class="slider">
+    <div class="item">
+        <img src="slider/7e516bd3268582783ecf3ced15f6bccc5d3ebf1d930aa102644725.jpg" alt="Первый слайд">
+    </div>
+
+    <div class="item">
+        <img src="slider/border-kolli2.jpg" alt="Второй слайд">
+    </div>
+
+    <div class="item">
+        <img src="slider/border-kolli-mramornogo-okrasa.jpg" alt="Третий слайд">
+    </div>
+
+    <div class="item">
+        <img src="slider/krasivyj-border-kolli-1525426403.jpg" alt="Четвертый слайд">
+    </div>
+
+    <a class="prev">&#10094;</a>
+    <a class="next">&#10095;</a>
+</div>
+
+<div class="slider-dots">
+    <span class="slider-dots_item" onclick="currentSlide(1)"></span>
+    <span class="slider-dots_item" onclick="currentSlide(2)"></span>
+    <span class="slider-dots_item" onclick="currentSlide(3)"></span>
+    <span class="slider-dots_item" onclick="currentSlide(4)"></span>
+</div>
+<!--конец слайдера-->
+
+<div class="content">
+<h2>Специально для Вас, мы собрали интересную информацию про эту породу собак!</h2>
+    <li><a href="/facts">Читать <span>10 Фактов</span> про бордер колли!</a></li>
+</div>
+
+
+<footer>
+    <div class="footer-left">
+    <p class="mailing">Обратная связь</p>
+    <p class="mailing">Хочешь стать автором?</p>
+    <p class="mailing"><span>Подпишись на рассылку!</span></p>
+        <button>Конечно!</button>
+        <form class="subscribe" action="/" method="post">
+            <p class="mailing">Напишите Ваше имя</p>
+            <input placeholder="Имя" name="name" type="text" required>
+            <p class="mailing">Напишите Вашу почту</p>
+            <input placeholder="Mail" name="mail" type="email" required> <br/>
+            <button class="mailing" type="submit">Подписаться</button>
+        </form>
+    </div>
+
+    <div class="social footer-right">
+        <p>Мы в социальных сетях</p>
+        <a href="#"><img src="https://img.icons8.com/color/48/000000/vk-com.png"/></a>
+        <a href="#"><img src="https://img.icons8.com/color/48/000000/youtube-play.png"/></a>
+        <a href="#"><img src="https://img.icons8.com/fluent/48/000000/telegram-app.png"/></a>
+    </div>
+    <br/>
+    <div class="credits">
+        <a href="https://icons8.com/icon/19318/play-button">Play Button icon by Icons8</a>
+        <p>Created by Tuppey_Tony</p>
+    </div>
+</footer>
+
+{% block slider %}
+    <script src="{{ static_url('script/script.js') }}"></script>
+{% end %}
+
+{% end %}

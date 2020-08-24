@@ -1,0 +1,5 @@
+photos
+node_modules
+.idea
+__pycache__
+.stylelintrc.json
