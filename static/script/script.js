@@ -84,7 +84,7 @@ submitBtn.addEventListener('click', (event) => {
 
     //вадилация мейла?
     if (trimName == '' && trimMail == '' && trimName != null && trimMail != null
-    && trimName.length < 32 && trimMail.length < 32) {
+        && trimName.length < 32 && trimMail.length < 32) {
         let error = document.createElement('p');
         error.className = 'error';
         error.innerHTML = '<span>Ошибка!</span> Нужно заполнить все поля правильно.';
@@ -92,6 +92,25 @@ submitBtn.addEventListener('click', (event) => {
         nameInp.value = '';
         mailInp.value = '';
     } else {
+        const request = new XMLHttpRequest();
+        request.open('POST', '/push');
+        request.setRequestHeader('Content-Type', 'application/json');
+        const formData = new FormData(form);
+
+        const object = {};
+        formData.forEach((value, key) =>{
+            object[key] = value;
+        });
+
+        request.send(JSON.stringify(object));
+
+        request.addEventListener('load', ()=>{
+            if (request.status === 200) {
+                console.log(request.response);
+                form.reset();
+            }
+        });
+
         console.log(nameInp.value, mailInp.value);
         let success = document.createElement('p');
         success.className = 'success';
@@ -103,4 +122,3 @@ submitBtn.addEventListener('click', (event) => {
 
 
 });
-

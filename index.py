@@ -3,6 +3,8 @@ import tornado.web
 import asyncio
 import os.path
 import tornado.httpserver
+from tornado.escape import json_decode
+
 from config import DB_CONNECT_LOCAL
 import psycopg2
 from psycopg2.extras import DictCursor
@@ -18,10 +20,12 @@ class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.render('index.html', title='Блог любителей собакенов')
 
+
+class Pyshhandler(tornado.web.RequestHandler):
     def post(self):
-        name = self.get_body_argument('name')
-        mail = self.get_body_argument('mail')
-        print(name, mail)
+        self.request.headers.get("Content-Type", "").startswith("/push")
+        self.json_args = json_decode(self.request.body)
+        print(self.json_args['name'])
 
 
 class FactsHandler(tornado.web.RequestHandler):
@@ -44,6 +48,7 @@ def main():
         (r"/facts", FactsHandler),
         (r"/slider/(.*)", tornado.web.StaticFileHandler, {"path": "slider/"}),
         (r"/photos/(.*)", tornado.web.StaticFileHandler, {"path": "photos/"}),
+        (r"/push", Pyshhandler),
     ],
         **settings)
 
